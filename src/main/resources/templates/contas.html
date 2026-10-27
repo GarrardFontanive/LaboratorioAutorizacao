@@ -3,7 +3,7 @@
 <head th:replace="~{fragments :: head('Contas')}"></head>
 <body>
 <header th:replace="~{fragments :: header}"></header>
-<main class="container workspace">
+<main id="conteudo" tabindex="-1" class="container workspace">
     <div class="section-heading"><div class="page-heading"><span class="eyebrow">FINANCEIRO DO CURSO</span><h1>Contas dos projetos</h1><p th:text="${usuario.empresaNome()}"></p></div><a class="button" th:href="@{/contas/nova}">+ Nova conta</a></div>
     <div th:replace="~{fragments :: messages}"></div>
     <div class="panel table-wrap"><table><thead><tr><th>Descrição</th><th>Tipo</th><th>Valor</th><th>Vencimento</th><th>Situação</th><th>Ações</th></tr></thead><tbody>

@@ -3,7 +3,7 @@
 <head th:replace="~{fragments :: head('Usuários')}"></head>
 <body>
 <header th:replace="~{fragments :: header}"></header>
-<main class="container workspace">
+<main id="conteudo" tabindex="-1" class="container workspace">
     <div class="page-heading"><span class="eyebrow">ADMINISTRAÇÃO</span><h1>Integrantes do curso</h1><p>Curso: <strong th:text="${usuario.empresaNome()}"></strong>.</p></div>
     <div th:replace="~{fragments :: messages}"></div>
     <div class="dashboard-grid">

@@ -3,7 +3,7 @@
 <head th:replace="~{fragments :: head('Painel')}"></head>
 <body>
 <header th:replace="~{fragments :: header}"></header>
-<main class="container workspace">
+<main id="conteudo" tabindex="-1" class="container workspace">
     <div class="page-heading"><span class="eyebrow">ÁREA DO CURSO</span><h1 th:text="'Olá, ' + ${usuario.nome()} + '!'"></h1><p>Curso: <strong th:text="${usuario.empresaNome()}"></strong>.</p></div>
     <div class="stats-grid">
         <a class="stat-card" th:href="@{/noticias}"><span>Notícias publicadas</span><strong th:text="${totalNoticias}"></strong><small>Gerenciar notícias ↗</small></a>

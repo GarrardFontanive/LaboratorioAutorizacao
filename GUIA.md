@@ -2,7 +2,15 @@
 
 Sistema web Java para a atividade de Desenvolvimento Web II, pronto para abrir como projeto Maven no Apache NetBeans.
 
-A interface foi tematizada como um trabalho de estudante de Bacharelado em Ciência da Computação do IFC Rio do Sul: mural de projetos, grupos de estudo e extensão dos cursos de **Ciência da Computação, Matemática e Física**, com cores verde e vermelha e uma marca própria em formato de caderno. É um projeto acadêmico não oficial. As publicações e os conflitos são fictícios, não anúncios ou regras institucionais reais. Referência de contexto: [IFC Campus Rio do Sul](https://riodosul.ifc.edu.br/).
+A interface foi tematizada como um trabalho de estudante de Bacharelado em Ciência da Computação do IFC Rio do Sul: mural de projetos, grupos de estudo e extensão dos cursos de **Ciência da Computação, Matemática e Física**, com cores verde e vermelha e as logomarcas oficiais do campus. É um projeto acadêmico não oficial. As publicações e os conflitos são fictícios, não anúncios ou regras institucionais reais. Referência de contexto: [IFC Campus Rio do Sul](https://riodosul.ifc.edu.br/).
+
+As imagens foram obtidas na [página de logotipos da CECOM](https://cecom.ifc.edu.br/logotipos-do-ifc/) e estão salvas em `src/main/resources/static/images/`, sem alterações nas proporções ou cores:
+
+- `ifc-riodosul-horizontal.png`: [original oficial](https://cecom.ifc.edu.br/wp-content/uploads/sites/10/2022/11/Logo_IFC_horizontal_Riodosul.png), usado no cabeçalho e rodapé.
+- `ifc-riodosul-vertical.png`: [original oficial](https://cecom.ifc.edu.br/wp-content/uploads/sites/10/2022/11/Logo_IFC_vertical_RiodoSul.png), usado na entrada.
+- `ifc-favicon.png`: [ícone do site do campus](https://riodosul.ifc.edu.br/wp-content/plugins/ifc-funcionalidade/res/images/favicon.png), usado na aba do navegador.
+
+Os arquivos são servidos pelo próprio aplicativo. Todas as telas têm um atalho de teclado **Ir para o conteúdo**, visível ao pressionar Tab.
 
 Os três cursos representam os tenants da atividade e aparecem no campo **Curso** do login. A estrutura `empresas` no banco e o parâmetro `empresa` dos formulários foram mantidos para atender ao modelo original. Para preservar conflitos e histórico existentes, os códigos internos continuam sendo `aurora` (Ciência da Computação), `horizonte` (Matemática) e `verde` (Física). A seleção mostra os nomes dos cursos; as senhas e as regras de autorização continuam iguais.
 

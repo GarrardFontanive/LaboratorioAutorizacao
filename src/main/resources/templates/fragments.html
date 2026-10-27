@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title th:text="${titulo} + ' · Mural IFC Rio do Sul'">Mural IFC Rio do Sul</title>
-    <link rel="icon" type="image/svg+xml" th:href="@{/images/caderno.svg}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/ifc-favicon.png}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <header class="site-header" th:fragment="header">
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
     <div class="header-inner">
-        <a class="brand" th:href="@{/}"><img class="brand-icon" th:src="@{/images/caderno.svg}" alt="" width="42" height="48"><span>IFC <span class="brand-light">Rio do Sul</span><small>MURAL ESTUDANTIL · CURSOS</small></span></a>
+        <a class="brand" th:href="@{/}" aria-label="Mural estudantil — página inicial"><img class="brand-logo" th:src="@{/images/ifc-riodosul-horizontal.png}" alt="Instituto Federal Catarinense — Campus Rio do Sul" width="828" height="275"><span class="brand-caption">Mural estudantil<small>CURSOS · DESENVOLVIMENTO WEB II</small></span></a>
         <nav aria-label="Navegação principal">
             <a th:href="@{/}">Mural público</a>
             <th:block th:if="${usuario != null}">
@@ -31,6 +32,9 @@
     <div class="alert alert-success" th:if="${sucesso}" th:text="${sucesso}"></div>
     <div class="alert alert-error" th:if="${erro}" th:text="${erro}" role="alert"></div>
 </div>
-<footer th:fragment="footer" class="site-footer"><span>IFC Rio do Sul · Ciência da Computação · Desenvolvimento Web II</span><span>Projeto acadêmico não oficial · Dados de demonstração</span></footer>
+<footer th:fragment="footer" class="site-footer">
+    <a class="footer-brand" href="https://riodosul.ifc.edu.br/" aria-label="Site oficial do IFC Campus Rio do Sul"><img th:src="@{/images/ifc-riodosul-horizontal.png}" alt="Instituto Federal Catarinense — Campus Rio do Sul" width="828" height="275" loading="lazy"></a>
+    <div class="footer-copy"><span>IFC Rio do Sul · Ciência da Computação · Desenvolvimento Web II</span><span>Projeto acadêmico não oficial · Dados de demonstração</span></div>
+</footer>
 </body>
 </html>

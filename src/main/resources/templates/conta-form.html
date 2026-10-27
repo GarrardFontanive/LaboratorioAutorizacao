@@ -3,7 +3,7 @@
 <head th:replace="~{fragments :: head('Cadastrar conta')}"></head>
 <body>
 <header th:replace="~{fragments :: header}"></header>
-<main class="container workspace form-container">
+<main id="conteudo" tabindex="-1" class="container workspace form-container">
     <div class="page-heading"><a class="subtle-link" th:href="@{/contas}">← Contas</a><h1 th:text="${conta.id() == 0 ? 'Nova conta' : 'Editar conta'}"></h1><p>Os dados ficam restritos ao curso <strong th:text="${usuario.empresaNome()}"></strong>.</p></div>
     <div th:replace="~{fragments :: messages}"></div>
     <form class="panel form-stack" th:action="@{/contas/salvar}" method="post">

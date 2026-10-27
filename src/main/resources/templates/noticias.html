@@ -3,7 +3,7 @@
 <head th:replace="~{fragments :: head('Notícias')}"></head>
 <body>
 <header th:replace="~{fragments :: header}"></header>
-<main class="container workspace">
+<main id="conteudo" tabindex="-1" class="container workspace">
     <div class="section-heading"><div class="page-heading"><span class="eyebrow">MURAL ESTUDANTIL</span><h1>Notícias do curso</h1><p th:text="${usuario.empresaNome()}"></p></div><a class="button" th:href="@{/noticias/nova}">+ Nova notícia</a></div>
     <div th:replace="~{fragments :: messages}"></div>
     <div class="empty-state" th:if="${#lists.isEmpty(noticias)}">Seu curso ainda não publicou notícias.</div>

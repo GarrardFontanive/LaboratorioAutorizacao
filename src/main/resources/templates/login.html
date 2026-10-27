@@ -3,8 +3,8 @@
 <head th:replace="~{fragments :: head('Entrar')}"></head>
 <body>
 <header th:replace="~{fragments :: header}"></header>
-<main class="container login-layout">
-    <section class="login-intro"><span class="eyebrow">IFC RIO DO SUL · MURAL DOS CURSOS</span><h1>Área do curso</h1><p>Ciência da Computação, Matemática e Física: notícias e projetos de cada turma.</p><div class="academic-note"><span class="badge badge-green">Desenvolvimento Web II</span><p>Laboratório de Autorização</p><small class="muted">Publicações e conflitos fictícios para a atividade.</small></div></section>
+<main id="conteudo" tabindex="-1" class="container login-layout">
+    <section class="login-intro"><div class="campus-signature"><img th:src="@{/images/ifc-riodosul-vertical.png}" alt="Instituto Federal Catarinense — Campus Rio do Sul" width="420" height="564"></div><span class="eyebrow">IFC RIO DO SUL · MURAL DOS CURSOS</span><h1>Área do curso</h1><p>Ciência da Computação, Matemática e Física: notícias e projetos de cada turma.</p><div class="academic-note"><span class="badge badge-green">Desenvolvimento Web II</span><p>Laboratório de Autorização</p><small class="muted">Publicações e conflitos fictícios para a atividade.</small></div></section>
     <section class="panel login-panel"><h2>Entrar no sistema</h2><p class="muted">Selecione seu curso.</p>
         <div class="alert alert-error" th:if="${param.erro}" th:text="${erroLogin ?: 'Não foi possível entrar. Confira curso, usuário e senha.'}" role="alert"></div>
         <div class="alert alert-success" th:if="${param.saiu}">Você saiu do sistema com segurança.</div>
