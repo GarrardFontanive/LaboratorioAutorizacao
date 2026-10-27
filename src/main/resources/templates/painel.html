@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Painel')}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<main class="container workspace">
+    <div class="page-heading"><span class="eyebrow">ÁREA DO CURSO</span><h1 th:text="'Olá, ' + ${usuario.nome()} + '!'"></h1><p>Curso: <strong th:text="${usuario.empresaNome()}"></strong>.</p></div>
+    <div class="stats-grid">
+        <a class="stat-card" th:href="@{/noticias}"><span>Notícias publicadas</span><strong th:text="${totalNoticias}"></strong><small>Gerenciar notícias ↗</small></a>
+        <a class="stat-card" th:href="@{/contas}"><span>Contas cadastradas</span><strong th:text="${totalContas}"></strong><small>Gerenciar contas ↗</small></a>
+        <div class="stat-card stat-dark"><span>Seu perfil de acesso</span><strong class="stat-label" th:text="${usuario.administrador() ? 'Administrador' : 'Usuário comum'}"></strong><small th:text="${usuario.administrador() ? 'Pode cadastrar usuários deste curso' : 'Pode gerenciar notícias e contas'}"></small></div>
+    </div>
+    <div class="dashboard-grid">
+        <section class="workspace-section"><span class="eyebrow">SEUS VÍNCULOS</span><h2>Seus cursos</h2>
+            <div class="company-row" th:each="vinculo : ${vinculos}"><div><strong th:text="${vinculo.empresa()}"></strong><small th:text="${vinculo.perfil() == 'ADMIN' ? 'Administrador' : 'Usuário comum'}"></small></div>
+                <span class="badge badge-green" th:if="${vinculo.empresaId() == usuario.empresaId()}">Atual</span>
+                <span class="badge badge-red" th:if="${vinculo.bloqueado()}">Bloqueado por CWP</span>
+                <form th:if="${vinculo.empresaId() != usuario.empresaId() and !vinculo.bloqueado()}" th:action="@{/trocar-empresa}" method="post"><input type="hidden" name="empresaId" th:value="${vinculo.empresaId()}"><button class="button button-small button-secondary" type="submit">Acessar →</button></form>
+            </div>
+        </section>
+        <section class="workspace-section policy-panel"><span class="eyebrow">AUTORIZAÇÃO · CWP</span><h2>Acessos administrativos</h2><p>Cursos com conflito de interesses ficam indisponíveis conforme seu histórico de administração.</p><h3>Cursos já administrados</h3><p class="muted" th:if="${#lists.isEmpty(historico)}">Nenhum acesso administrativo registrado.</p><div class="badge-list"><span class="badge badge-green" th:each="empresa : ${historico}" th:text="${empresa.nome()}"></span></div></section>
+    </div>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

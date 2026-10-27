@@ -1,0 +1,13 @@
+/target/
+/data/
+/.m2-cache/
+/nbproject/private/
+*.log
+.idea/
+.DS_Store
+/.agents/
+/.codex/
+/.aws/
+.env
+.env.*
+!.env.example

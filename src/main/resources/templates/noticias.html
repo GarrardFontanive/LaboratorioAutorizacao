@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Notícias')}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<main class="container workspace">
+    <div class="section-heading"><div class="page-heading"><span class="eyebrow">MURAL ESTUDANTIL</span><h1>Notícias do curso</h1><p th:text="${usuario.empresaNome()}"></p></div><a class="button" th:href="@{/noticias/nova}">+ Nova notícia</a></div>
+    <div th:replace="~{fragments :: messages}"></div>
+    <div class="empty-state" th:if="${#lists.isEmpty(noticias)}">Seu curso ainda não publicou notícias.</div>
+    <section class="news-grid"><article class="news-card" th:each="noticia : ${noticias}"><div class="news-top"><span class="badge badge-green" th:text="${noticia.empresa()}"></span><small class="muted" th:text="${#temporals.format(noticia.criadaEm(), 'dd/MM/yyyy')}"></small></div><h3 th:text="${noticia.titulo()}"></h3><p class="news-content" th:text="${noticia.conteudo()}"></p><div class="actions"><a class="button button-small button-secondary" th:href="@{/noticias/{id}/editar(id=${noticia.id()})}">Editar</a><form th:action="@{/noticias/{id}/excluir(id=${noticia.id()})}" method="post"><button class="button button-small button-danger" type="submit">Excluir</button></form></div></article></section>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

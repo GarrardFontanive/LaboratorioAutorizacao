@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Mural público')}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<main class="container">
+    <section class="mural-heading">
+        <span class="eyebrow">DA TURMA PARA O CAMPUS</span>
+        <h1>Mural estudantil</h1>
+        <p>Projetos, grupos de estudo e ideias que fazem parte da vida de estudante no IFC Rio do Sul.</p>
+        <div class="campus-tags"><span>Ciência da Computação</span><span>Matemática</span><span>Física</span></div>
+    </section>
+    <div class="section-heading"><div><span class="eyebrow">NO MURAL</span><h2>Notícias e projetos</h2></div><span class="muted small" th:text="${#lists.size(noticias)} + ' publicações'">0 publicações</span></div>
+    <div class="empty-state" th:if="${#lists.isEmpty(noticias)}">Ainda não há notícias no mural.</div>
+    <section class="news-grid" aria-label="Notícias dos cursos">
+        <article class="news-card" th:each="noticia : ${noticias}">
+            <div class="news-top"><span class="badge badge-green" th:text="${noticia.empresa()}"></span><span class="muted" th:text="${#temporals.format(noticia.criadaEm(), 'dd/MM/yyyy')}"></span></div>
+            <h3 th:text="${noticia.titulo()}"></h3>
+            <p class="news-content" th:text="${noticia.conteudo()}"></p>
+            <div class="news-author">Publicado por <strong th:text="${noticia.autor()}"></strong></div>
+        </article>
+    </section>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

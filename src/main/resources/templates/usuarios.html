@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Usuários')}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<main class="container workspace">
+    <div class="page-heading"><span class="eyebrow">ADMINISTRAÇÃO</span><h1>Integrantes do curso</h1><p>Curso: <strong th:text="${usuario.empresaNome()}"></strong>.</p></div>
+    <div th:replace="~{fragments :: messages}"></div>
+    <div class="dashboard-grid">
+        <section class="panel"><h2>Novo usuário</h2><form class="form-stack" th:action="@{/usuarios}" method="post">
+            <label for="nome">Nome completo</label><input id="nome" name="nome" maxlength="100" th:value="${nomeInformado}" autocomplete="name" required>
+            <label for="login">Nome de usuário</label><input id="login" name="login" pattern="[a-zA-Z0-9._-]{3,50}" minlength="3" maxlength="50" th:value="${loginInformado}" autocomplete="off" required><small class="muted">Identificador único no sistema: letras, números, ponto, traço ou sublinhado.</small>
+            <label for="senha">Senha inicial</label><input id="senha" type="password" name="senha" minlength="8" maxlength="72" autocomplete="new-password" required><small class="muted">Mínimo de 8 caracteres. A senha é armazenada como hash.</small>
+            <label for="perfil">Perfil neste curso</label><select id="perfil" name="perfil"><option value="COMUM" th:selected="${perfilInformado != 'ADMIN'}">Usuário comum</option><option value="ADMIN" th:selected="${perfilInformado == 'ADMIN'}">Administrador</option></select>
+            <button class="button" type="submit">Cadastrar usuário</button>
+        </form></section>
+        <section class="workspace-section"><h2>Equipe atual</h2><div class="company-row" th:each="membro : ${membros}"><div><strong th:text="${membro.nome()}"></strong><small th:text="'@' + ${membro.login()}"></small></div><span class="badge" th:text="${membro.perfil() == 'ADMIN' ? 'Administrador' : 'Usuário comum'}"></span></div></section>
+    </div>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

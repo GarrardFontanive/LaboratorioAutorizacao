@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Acesso indisponível')}"></head>
+<body>
+<main class="container error-page"><span class="eyebrow" th:text="'RESPOSTA ' + ${status ?: 500}"></span><h1 th:text="${status == 403 ? 'Este acesso está protegido.' : 'Não foi possível continuar.'}"></h1><p th:text="${mensagem ?: 'Página indisponível. Confira o endereço ou tente novamente.'}"></p><div class="actions"><a class="button" th:href="@{/painel}">Voltar ao painel</a><a class="button button-secondary" th:href="@{/}">Mural público</a><a class="button button-secondary" th:href="@{/login}">Entrar novamente</a></div></main>
+</body>
+</html>

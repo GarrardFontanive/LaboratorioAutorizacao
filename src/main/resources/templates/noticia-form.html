@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Publicar notícia')}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<main class="container workspace form-container">
+    <div class="page-heading"><a class="subtle-link" th:href="@{/noticias}">← Notícias</a><h1 th:text="${noticia.id() == 0 ? 'Nova notícia' : 'Editar notícia'}"></h1><p>Publicação vinculada ao curso <strong th:text="${usuario.empresaNome()}"></strong>.</p></div>
+    <div th:replace="~{fragments :: messages}"></div>
+    <form class="panel form-stack" th:action="@{/noticias/salvar}" method="post">
+        <input th:if="${noticia.id() != 0}" type="hidden" name="id" th:value="${noticia.id()}">
+        <label for="titulo">Título</label><input id="titulo" name="titulo" maxlength="150" th:value="${noticia.titulo()}" required>
+        <label for="conteudo">Conteúdo</label><textarea id="conteudo" name="conteudo" rows="10" maxlength="10000" th:text="${noticia.conteudo()}" required></textarea>
+        <p class="muted small">Esta notícia será visível para qualquer visitante do mural.</p>
+        <div class="actions"><button class="button" type="submit">Salvar notícia</button><a class="button button-secondary" th:href="@{/noticias}">Cancelar</a></div>
+    </form>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

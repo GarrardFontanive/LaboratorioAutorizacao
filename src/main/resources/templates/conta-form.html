@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Cadastrar conta')}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<main class="container workspace form-container">
+    <div class="page-heading"><a class="subtle-link" th:href="@{/contas}">← Contas</a><h1 th:text="${conta.id() == 0 ? 'Nova conta' : 'Editar conta'}"></h1><p>Os dados ficam restritos ao curso <strong th:text="${usuario.empresaNome()}"></strong>.</p></div>
+    <div th:replace="~{fragments :: messages}"></div>
+    <form class="panel form-stack" th:action="@{/contas/salvar}" method="post">
+        <input th:if="${conta.id() != 0}" type="hidden" name="id" th:value="${conta.id()}">
+        <label for="descricao">Descrição</label><input id="descricao" name="descricao" maxlength="150" th:value="${conta.descricao()}" required>
+        <div class="form-grid"><div><label for="valor">Valor (R$)</label><input id="valor" type="number" name="valor" min="0.01" max="9999999999.99" step="0.01" th:value="${conta.valor()}" required></div><div><label for="vencimento">Vencimento</label><input id="vencimento" type="date" name="vencimento" th:value="${conta.vencimento()}" required></div></div>
+        <div class="form-grid"><div><label for="tipo">Tipo</label><select id="tipo" name="tipo"><option value="PAGAR" th:selected="${conta.tipo() == 'PAGAR'}">A pagar</option><option value="RECEBER" th:selected="${conta.tipo() == 'RECEBER'}">A receber</option></select></div><div><label for="situacao">Situação</label><select id="situacao" name="situacao"><option value="PENDENTE" th:selected="${conta.situacao() == 'PENDENTE'}">Pendente</option><option value="PAGA" th:selected="${conta.situacao() == 'PAGA'}">Liquidada</option></select></div></div>
+        <div class="actions"><button class="button" type="submit">Salvar conta</button><a class="button button-secondary" th:href="@{/contas}">Cancelar</a></div>
+    </form>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

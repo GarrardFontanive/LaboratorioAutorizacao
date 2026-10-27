@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(titulo)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${titulo} + ' · Mural IFC Rio do Sul'">Mural IFC Rio do Sul</title>
+    <link rel="icon" type="image/svg+xml" th:href="@{/images/caderno.svg}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="site-header" th:fragment="header">
+    <div class="header-inner">
+        <a class="brand" th:href="@{/}"><img class="brand-icon" th:src="@{/images/caderno.svg}" alt="" width="42" height="48"><span>IFC <span class="brand-light">Rio do Sul</span><small>MURAL ESTUDANTIL · CURSOS</small></span></a>
+        <nav aria-label="Navegação principal">
+            <a th:href="@{/}">Mural público</a>
+            <th:block th:if="${usuario != null}">
+                <a th:href="@{/painel}">Painel</a>
+                <a th:href="@{/noticias}">Notícias</a>
+                <a th:href="@{/contas}">Contas</a>
+                <a th:if="${usuario.administrador()}" th:href="@{/usuarios}">Usuários</a>
+                <form th:action="@{/logout}" method="post"><button class="button button-small button-secondary" type="submit">Sair</button></form>
+            </th:block>
+            <a th:unless="${usuario != null}" class="button button-small" th:href="@{/login}">Acessar sistema <span aria-hidden="true">↗</span></a>
+        </nav>
+    </div>
+    <div class="tenant-bar" th:if="${usuario != null}">
+        <div class="header-inner"><span>Curso ativo <strong th:text="${usuario.empresaNome()}"></strong></span><span><span th:text="${usuario.nome()}"></span> <span class="badge" th:text="${usuario.administrador() ? 'Administrador' : 'Usuário comum'}"></span></span></div>
+    </div>
+</header>
+<div th:fragment="messages" aria-live="polite">
+    <div class="alert alert-success" th:if="${sucesso}" th:text="${sucesso}"></div>
+    <div class="alert alert-error" th:if="${erro}" th:text="${erro}" role="alert"></div>
+</div>
+<footer th:fragment="footer" class="site-footer"><span>IFC Rio do Sul · Ciência da Computação · Desenvolvimento Web II</span><span>Projeto acadêmico não oficial · Dados de demonstração</span></footer>
+</body>
+</html>
