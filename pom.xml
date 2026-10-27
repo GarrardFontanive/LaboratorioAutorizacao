@@ -48,6 +48,33 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>br.edu.bcc.autorizacao.AutorizacaoApplication</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>cliente-rmi</id>
+                        <phase>package</phase>
+                        <goals><goal>jar</goal></goals>
+                        <configuration>
+                            <classifier>cliente-rmi</classifier>
+                            <includes>
+                                <include>br/edu/bcc/autorizacao/rmi/MuralRemoto.class</include>
+                                <include>br/edu/bcc/autorizacao/rmi/DadosMural*.class</include>
+                                <include>br/edu/bcc/autorizacao/rmi/ClienteRmi.class</include>
+                            </includes>
+                            <archive>
+                                <manifest>
+                                    <mainClass>br.edu.bcc.autorizacao.rmi.ClienteRmi</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

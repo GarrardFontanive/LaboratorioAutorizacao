@@ -10,6 +10,7 @@ Trabalho de Desenvolvimento Web II com tema do IFC Rio do Sul. O sistema tem um 
 - Isolamento dos dados entre cursos (multi-tenant).
 - Bloqueio de administração por conflito de interesses (CWP).
 - Mural público com identificação do curso de cada notícia.
+- Consulta de cursos e notícias públicas por Java RMI, com cliente Java independente.
 
 ## Tecnologias
 
@@ -28,6 +29,29 @@ mvn spring-boot:run
 Acesse [http://localhost:8081](http://localhost:8081). No NetBeans, abra a pasta como projeto Maven e execute com **F6**.
 
 O banco e os exemplos são criados automaticamente na primeira execução. Os dados ficam salvos na pasta `data/`, que não é enviada ao GitHub.
+
+## Cliente Java RMI
+
+O servidor RMI inicia junto com o site. Para gerar o servidor e o cliente independente:
+
+```bash
+mvn package
+```
+
+Com o site em execução, use outro terminal, na mesma pasta:
+
+```bash
+java -jar target/laboratorio-autorizacao-1.0.0-cliente-rmi.jar
+```
+
+O cliente consulta cursos e notícias públicas em outra JVM, usando o mesmo banco do site.
+Para consultar apenas Ciência da Computação:
+
+```bash
+java -jar target/laboratorio-autorizacao-1.0.0-cliente-rmi.jar 127.0.0.1 1099 aurora
+```
+
+Veja a arquitetura, as portas e o roteiro de demonstração em [RMI.md](RMI.md).
 
 ## Acessos de demonstração
 
